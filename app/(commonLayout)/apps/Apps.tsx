@@ -64,6 +64,7 @@ const Apps = () => {
       {data?.map(({ data: apps }) => apps.map(app => (
         <AppCard key={app.id} app={app} onRefresh={mutate} />
       )))}
+      
       {
         showPayStatusModal && (
           <Confirm

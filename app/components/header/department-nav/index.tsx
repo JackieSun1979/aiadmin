@@ -33,19 +33,19 @@ const DatasetNav = () => {
     <Nav
       icon={<Database01 className='w-4 h-4' />}
       activeIcon={<Database02 className='w-4 h-4' />}
-      text={t('common.menus.datasets')}
-      activeSegment='datasets'
-      link='/datasets'
+      text={t('common.menus.department')}
+      activeSegment='department'
+      link='/department/door'
       curNav={currentDataset}
       navs={datasetItems.map(dataset => ({
         id: dataset.id,
         name: dataset.name,
-        link: `/datasets/${dataset.id}/documents`,
+        link: `/department/${dataset.id}/documents`,
         icon: dataset.icon,
         icon_background: dataset.icon_background,
       }))}
-      createText={t('common.menus.newDataset')}
-      onCreate={() => router.push('/datasets/create')}
+      createText={t('common.menus.department')}
+      onCreate={() => router.push('/department/create')}
       onLoadmore={handleLoadmore}
     />
   )

@@ -82,6 +82,7 @@ const translation = {
     datasetsTips: 'COMING SOON: Import your own text data or write data in real-time via Webhook for LLM context enhancement.',
     newApp: 'New App',
     newDataset: 'Create dataset',
+    department:'Department'
   },
   userProfile: {
     settings: 'Settings',

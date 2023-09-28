@@ -1,23 +1,25 @@
 "use client";
 import React, { useEffect, useRef } from 'react'
-import { getDepartment , addDepartment,getDepartDetail,editDepartment,DelDepartment} from '@/service/departments'
-import { getAllApps , operateApp , operateDepUser } from '@/service/binding'
+import { getDepartment ,getDepartDetail,DelDepartment} from '@/service/departments'
+import {  operateApp } from '@/service/binding'
 import { useContext } from 'use-context-selector'
 import { ToastContext } from '@/app/components/base/toast'
 import Addview from '@/app/components/departments/ui/addView'
 import Selectview from '@/app/components/departments/ui/selectAppsView'
-import LookApps from '@/app/components/departments/ui/lookAppsView'
 import { useTranslation } from 'react-i18next'
-import { XClose } from '@/app/components/base/icons/src/vender/line/general'
+import Loading from '@/app/components/base/loading'
+
 
 const Depart = () => {
     const { t } = useTranslation()
     const { notify } = useContext(ToastContext)
     const [departments, setDepart]: any = React.useState([])
+    const [isLoading, setIsloading] = React.useState(true)
 
     let getData = async() =>{
         let res:any = await getDepartment()
         setDepart(res.departments)
+        setIsloading(false)
     }
     let fomrData = {
         name:'',
@@ -28,8 +30,6 @@ const Depart = () => {
     const [depId, setDepId] = React.useState(null)
 
     const [selectShow,setSelectShow]: any = React.useState(false)
-    const [lookAppShow,setLookAppShow]: any = React.useState(false)
-    const [lookAppS,setLookAppS]: any = React.useState([])
     
     useEffect(() => {
         getData()
@@ -39,7 +39,6 @@ const Depart = () => {
         setAddShow(false);
         setDepId(null)
         setSelectShow(false)
-        setLookAppShow(false)
     }
     const onReady = async () =>{
         // 重置
@@ -78,14 +77,6 @@ const Depart = () => {
         setDepId(data.id)
         setSelectShow(true)
     }
-  
-    const lookApp = async (data:any) =>{
-        // showLookApp
-        let res = await operateApp('look',data.id,'')
-        setDepId(data.id)
-        setLookAppS(res.apps)
-        setLookAppShow(true)
-    }
 
     const tableView = (
         <div>
@@ -111,9 +102,6 @@ const Depart = () => {
                                 <span onClick={()=>onShowSelect({id:item.id})} className='inline-flex mr-2 px-4 justify-center items-center h-7 rounded-lg bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !text-[12px]'>
                                     关联应用
                                 </span>
-                                <span onClick={()=>lookApp({id:item.id})} className='inline-flex mr-2 px-4 justify-center items-center h-7 rounded-lg bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !text-[12px]'>
-                                    查看应用
-                                </span>
                                 <span onClick={()=>editChange({id:item.id})} className='inline-flex mr-2 px-4 justify-center items-center h-7 rounded-lg bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !text-[12px]'>编辑</span>
                                 <span onClick={()=>delChange({id:item.id})} className='inline-flex px-4 justify-center items-center h-7 rounded-lg bg-red-600 hover:bg-red-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !text-[12px]'>删除</span>
                             </div>
@@ -125,15 +113,16 @@ const Depart = () => {
     )
     return (
         <div className='flex-auto bg-white rounded-lg ml-4 p-4'>
-            {tableView}
+            {isLoading?(
+                <div className='h-full flex items-center'>
+                    <Loading type='area' />
+                </div>
+            ):tableView}
             {addShow? (
                 <Addview depId={depId} onHide={bindAddHide} fomrData={inputForm} onReady={onReady}/>
             ) : ''}
             {selectShow?(
                 <Selectview depId={depId} onHide={bindAddHide} />
-            ):''}
-            {lookAppShow?(
-                <LookApps depId={depId} onHide={bindAddHide} lookApps={lookAppS} />
             ):''}
         </div>
     );

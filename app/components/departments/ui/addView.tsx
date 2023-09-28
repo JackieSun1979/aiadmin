@@ -52,7 +52,7 @@ const demoView: FC<Props> = (Props) => {
                       </div>
                   </div>
                   <div className='flex items-center h-[48px]'>
-                      <div className='w-[80px] text-right'>code</div>
+                      <div className='w-[80px] text-right'>简称</div>
                       <div className='flex-1 ml-6'>
                           <input type="text" value={inputForm.code} maxLength={100} onChange={event=>setInputForm({...inputForm,['code']:event.target.value})} className='h-10 px-3 text-sm font-normal bg-gray-100 rounded-lg grow w-full' />
                       </div>

@@ -18,7 +18,7 @@ export const operateApp = (type:any,department:any,app:any): Promise<any> => {
 
     }else if(type == 'del'){
 
-        request = get(`/workspaces/current/departments/${department}/deleteapp/${app}`)
+        request = del(`/workspaces/current/departments/${department}/deleteapp/${app}`)
         
     }
 
@@ -30,15 +30,15 @@ export const operateDepUser = (type:any,department:any,user:any): Promise<any> =
 
     if(type == 'add'){
 
-        request = get(`/workspaces/current/departments/${department}/addenduser/${user}`)
+        request = post(`/workspaces/current/departments/${department}/addenduser/${user}`)
 
     }else if(type == 'look'){
 
-        request = get(`/workspaces/current/departments/${department}/endusers`)
+        request = get(`/workspaces/current/endusers/${user}/departments`)
 
     }else if(type == 'del'){
 
-        request = get(`/workspaces/current/departments/${department}/deleteenduser/${user}`)
+        request = del(`/workspaces/current/departments/${department}/deleteenduser/${user}`)
         
     }
 

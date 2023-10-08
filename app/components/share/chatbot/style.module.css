@@ -3,12 +3,14 @@
 }
 
 .difyIcon {
-  background-image: url(./icons/dify.svg);
+  width: 12px;
+  height: 12px;
+  /*background-image: url(./icons/dify.svg);*/
 }
 
 .difyHeader {
   width: 24px;
   height: 24px;
-  background: url(./icons/dify-header.svg) center center no-repeat;
+  /*background: url(./icons/dify-header.svg) center center no-repeat;*/
   background-size: contain;
 }

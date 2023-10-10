@@ -80,7 +80,11 @@ const Endusers = () => {
 
     const tableView = (
         <div>
-            <div className='pb-4 flex items-center justify-end'>
+            <div className='pb-4 flex items-center justify-between'>
+                <div>
+                    <input className='flex-grow rounded-lg h-9 box-border px-3 style_projectName__oF8xu bg-gray-100' type="text" />
+                    <span className='ml-2 inline-flex justify-center items-center content-center h-9 leading-5 rounded-lg px-4 py-2 text-base bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !h-8 !text-[13px]'>{t('common.operation.search')}</span>
+                </div>
                 <span onClick={bindAddShow} className='inline-flex justify-center items-center content-center h-9 leading-5 rounded-lg px-4 py-2 text-base bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !h-8 !text-[13px]'>
                     添加用户
                 </span>

@@ -8,7 +8,7 @@ import useSWRInfinite from 'swr/infinite'
 import { flatten } from 'lodash-es'
 import Nav from '../nav'
 import { fetchDataDetail, fetchDatasets } from '@/service/datasets'
-import { Database03 } from '@/app/components/base/icons/src/vender/solid/development'
+import { PuzzlePiece01 } from '@/app/components/base/icons/src/vender/line/development'
 import type { DataSetListResponse } from '@/models/datasets'
 
 const getKey = (pageIndex: number, previousPageData: DataSetListResponse) => {
@@ -24,16 +24,15 @@ const DatasetNav = () => {
   const { data: currentDataset } = useSWR(datasetId || null, fetchDataDetail)
   const { data: datasetsData, setSize } = useSWRInfinite(datasetId ? getKey : () => null, fetchDatasets, { revalidateFirstPage: true })
   const datasetItems = flatten(datasetsData?.map(datasetData => datasetData.data))
-
   const handleLoadmore = useCallback(() => {
     setSize(size => size + 1)
   }, [setSize])
   return (
     <Nav
-      icon={<Database03 className='w-4 h-4' />}
-      activeIcon={<Database03 className='w-4 h-4' />}
-      text={t('common.menus.department')}
-      activeSegment='department'
+      icon={<PuzzlePiece01 className='w-4 h-4' />}
+      activeIcon={<PuzzlePiece01 className='w-4 h-4' />}
+      text={t('common.menus.report')}
+      activeSegment='report'
       link='/department/door'
       curNav={currentDataset}
       navs={datasetItems.map(dataset => ({
@@ -43,7 +42,7 @@ const DatasetNav = () => {
         icon: dataset.icon,
         icon_background: dataset.icon_background,
       }))}
-      createText={t('common.menus.department')}
+      createText={t('common.menus.report')}
       onCreate={() => router.push('/department/create')}
       onLoadmore={handleLoadmore}
     />

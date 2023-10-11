@@ -90,7 +90,7 @@ const Depart = () => {
             <div className="head flex text-center border-b border-t h-[48px] items-center">
                 <div className="w-[240px]">ID</div>
                 <div className="flex-1">名称</div>
-                <div className="flex-1">code</div>
+                <div className="flex-1">简称</div>
                 <div className="flex-1">创建时间</div>
                 <div className="w-[300px]">操作</div>
             </div>

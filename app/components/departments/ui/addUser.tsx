@@ -43,13 +43,13 @@ const demoView: FC<Props> = (Props) => {
             </div>
             <div className='p-8'>
                 <div className='flex items-center h-[48px] mb-2'>
-                    <div className='w-[80px] text-right'>name</div>
+                    <div className='w-[80px] text-right'>姓名</div>
                     <div className='flex-1 ml-6'>
                         <input type="text" value={inputForm.name} maxLength={100} onChange={event=>setInputForm({...inputForm,['name']:event.target.value})} className='h-10 px-3 text-sm font-normal bg-gray-100 rounded-lg grow w-full' />
                     </div>
                 </div>
                 <div className='flex items-center h-[48px]'>
-                    <div className='w-[80px] text-right'>loginname</div>
+                    <div className='w-[80px] text-right'>登陆名</div>
                     <div className='flex-1 ml-6'>
                         <input type="text" value={inputForm.loginname} maxLength={100} onChange={event=>setInputForm({...inputForm,['loginname']:event.target.value})} className='h-10 px-3 text-sm font-normal bg-gray-100 rounded-lg grow w-full' />
                     </div>

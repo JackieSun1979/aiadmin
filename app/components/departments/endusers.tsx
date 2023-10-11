@@ -91,8 +91,8 @@ const Endusers = () => {
             </div>
             <div className="head flex text-center border-b border-t h-[48px] items-center">
                 <div className="w-[240px]">ID</div>
-                <div className="flex-1">name</div>
-                <div className="flex-1">loginname</div>
+                <div className="flex-1">姓名</div>
+                <div className="flex-1">登陆名</div>
                 <div className="flex-1">创建时间</div>
                 <div className="w-[240px]">操作</div>
             </div>

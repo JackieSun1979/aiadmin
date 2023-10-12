@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from 'react'
-import { getEndusers , addEndusers,getUserDetail,editEnduserst,DelEndusers} from '@/service/departments'
+import { getEndusers ,getUserDetail,DelEndusers,queryName} from '@/service/departments'
 import { useContext } from 'use-context-selector'
 import { ToastContext } from '@/app/components/base/toast'
 import { useTranslation } from 'react-i18next'
@@ -29,6 +29,7 @@ const Endusers = () => {
 
     const [bindDepShow, setBindDepShow] = React.useState(false)
     const [userId, setUserId] = React.useState(null)
+    const [ergodic, setErgodic] = React.useState('')
     
     useEffect(() => {
         getData()
@@ -77,13 +78,21 @@ const Endusers = () => {
         setUserId(data.id)
         setBindDepShow(true)
     }
+    const searchSubmit = async () =>{
+        if(ergodic.length){
+            let res:any = await queryName(ergodic)
+            setDepart(res.endusers)
+        }else{
+            getData()
+        }
+    }
 
     const tableView = (
         <div>
             <div className='pb-4 flex items-center justify-between'>
                 <div>
-                    <input className='flex-grow rounded-lg h-9 box-border px-3 style_projectName__oF8xu bg-gray-100' type="text" />
-                    <span className='ml-2 inline-flex justify-center items-center content-center h-9 leading-5 rounded-lg px-4 py-2 text-base bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !h-8 !text-[13px]'>{t('common.operation.search')}</span>
+                    <input onChange={event=>setErgodic(event.target.value)} placeholder=""  className='w-[240px] flex-grow rounded-lg h-9 box-border px-3 style_projectName__oF8xu bg-gray-100' type="text" />
+                    <span onClick={searchSubmit} className='ml-2 inline-flex justify-center items-center content-center h-9 leading-5 rounded-lg px-4 py-2 text-base bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !h-8 !text-[13px]'>{t('common.operation.search')}</span>
                 </div>
                 <span onClick={bindAddShow} className='inline-flex justify-center items-center content-center h-9 leading-5 rounded-lg px-4 py-2 text-base bg-primary-600 hover:bg-primary-600/75 hover:shadow-md cursor-pointer text-white hover:shadow-sm !h-8 !text-[13px]'>
                     添加用户

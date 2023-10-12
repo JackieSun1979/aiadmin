@@ -19,7 +19,9 @@ export const editDepartment = (id:any,body:any): Promise<any> => {
 export const DelDepartment = (id:any): Promise<any> => {
   return del(`/workspaces/current/departments/${id}`)
 }
-
+export const queryDepartments = (q:any = ''): Promise<any> => {
+  return get(`/workspaces/current/departments/query?q=${q}`)
+}
 
 // 用户
 export const getEndusers = (): Promise<any> => {
@@ -38,5 +40,8 @@ export const editEnduserst = (id:any,body:any): Promise<any> => {
 
 export const DelEndusers = (id:any): Promise<any> => {
   return del(`/workspaces/current/endusers/${id}`)
+}
+export const queryName = (q:any = ''): Promise<any> => {
+  return get(`/workspaces/current/endusers/query?q=${q}`)
 }
 // return post(url, { body })
